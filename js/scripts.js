@@ -4,6 +4,7 @@ Doctors = function(){
   websiteArray = [];
   phoneArray = [];
   addressArray = [];
+  imageArray = [];
 };
 
 Doctors.prototype.getDoctors = function(medicalIssue, apiKey, display) {
@@ -11,19 +12,22 @@ Doctors.prototype.getDoctors = function(medicalIssue, apiKey, display) {
    .then(function(result) {
      var doc = result.data;
      doc.forEach(function(element){
+        nameArray.push(element.profile.first_name + " " + element.profile.middle_name + " " + element.profile.last_name + ", " + element.profile.title);
 
-        nameArray.push(element.profile.first_name + " " + element.profile.middle_name + " " + element.profile.last_name);
+        practicesArray.push(element.practices[0].name);
 
-        practicesArray.push(element.practices[0].name)
-
-        phoneArray.push(element.practices[0].phones[0].number)
+        phoneArray.push(element.practices[0].phones[0].number);
 
         websiteArray.push(element.practices[0].website);
 
-        addressArray.push(element.practices[0].visit_address.street + " " + element.practices[0].visit_address.city + " " + element.practices[0].visit_address.state + " " + element.practices[0].visit_address.zip)
+        addressArray.push(element.practices[0].visit_address.street + " " + element.practices[0].visit_address.city + " " + element.practices[0].visit_address.state + " " + element.practices[0].visit_address.zip);
+
+        imageArray.push(element.profile.image_url);
      });
-     display(nameArray, phoneArray, websiteArray, practicesArray, addressArray);
+
+     display(nameArray, phoneArray, websiteArray, practicesArray, addressArray, imageArray);
     })
+    
    .fail(function(error){
       console.log("fail");
     });

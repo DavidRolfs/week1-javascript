@@ -4,3 +4,4 @@ build/
 tmp/
 bower_components/
 package-lock.json
+.env

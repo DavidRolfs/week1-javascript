@@ -1,16 +1,16 @@
-var Doctors = require('./../js/scripts.js').doctorsModule;
+var Doctor = require('./../js/scripts.js').doctorsModule;
 var apiKey = require('./../.env').apiKey;
 
-var display = function(name, contact, website, practice, address, image) {
+var display = function(array) {
   $("#output").empty();
   for(var i = 0; i <= 20; i++){
     $('#output').append("<li>" +
-      "<h3>" + name[i] + "</h3>" +
-      "<h5>" + practice[i] + "</h5>" +
-      "<img src=" + image[i] + ">" +
-      "<p> Address: " + address[i] + "</p>" +
-      "<p> Phone number: " + contact[i] + "</p>" +
-      "<p> Webiste: " + website[i] + "</p>" +
+      "<h3>" + array[i].name + "</h3>" +
+      "<h5>" + array[i].practice + "</h5>" +
+      "<img src=" + array[i].image + ">" +
+      "<p> Address: " + array[i].address + "</p>" +
+      "<p> Phone number: " + array[i].phone + "</p>" +
+      "<p> Webiste: <a href = " + array[i].website + "</a>" + array[i].website + "</p>" +
       "</li>");
   }
 };
@@ -18,10 +18,9 @@ var display = function(name, contact, website, practice, address, image) {
 $(document).ready(function(){
   $("#form").submit(function(event){
     event.preventDefault();
-
-    newDoctors = new Doctors();
     var userInput = $("#userInput").val();
+    doctor = new Doctor();
 
-    newDoctors.getDoctors(userInput, apiKey, display);
+    doctor.getDoctors(userInput, apiKey, display);
   });
 });

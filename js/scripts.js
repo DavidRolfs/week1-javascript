@@ -1,36 +1,30 @@
-Doctors = function(){
-  nameArray = [];
-  practicesArray = [];
-  websiteArray = [];
-  phoneArray = [];
-  addressArray = [];
-  imageArray = [];
+
+Doctor = function(name, practice, website, phone, address, image){
+  this.name = name;
+  this.practice = practice;
+  this.website = website;
+  this.phone = phone;
+  this.address = address;
+  this.image = image;
 };
 
-Doctors.prototype.getDoctors = function(medicalIssue, apiKey, display) {
+Doctor.prototype.getDoctors = function(medicalIssue, apiKey, display) {
+  var allDoctorsArray = [];
   $.get('https://api.betterdoctor.com/2016-03-01/doctors?query=' +  medicalIssue + '&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=0&limit=20&user_key=' + apiKey)
-   .then(function(result) {
-     var doc = result.data;
-     doc.forEach(function(element){
-        nameArray.push(element.profile.first_name + " " + element.profile.middle_name + " " + element.profile.last_name + ", " + element.profile.title);
+    .then(function(result) {
+      var doc = result.data;
+      doc.forEach(function(element){
+        var newDoctor = new Doctor((element.profile.first_name + " " + element.profile.middle_name + " " + element.profile.last_name + ", " + element.profile.title), element.practices[0].name, element.practices[0].website, element.practices[0].phones[0].number, (element.practices[0].visit_address.street + " " + element.practices[0].visit_address.city + " " + element.practices[0].visit_address.state + " " + element.practices[0].visit_address.zip), element.profile.image_url);
 
-        practicesArray.push(element.practices[0].name);
-
-        phoneArray.push(element.practices[0].phones[0].number);
-
-        websiteArray.push(element.practices[0].website);
-
-        addressArray.push(element.practices[0].visit_address.street + " " + element.practices[0].visit_address.city + " " + element.practices[0].visit_address.state + " " + element.practices[0].visit_address.zip);
-
-        imageArray.push(element.profile.image_url);
+      allDoctorsArray.push(newDoctor);
      });
 
-     display(nameArray, phoneArray, websiteArray, practicesArray, addressArray, imageArray);
+    display(allDoctorsArray);
     })
-    
+
    .fail(function(error){
       console.log("fail");
     });
 };
 
-exports.doctorsModule = Doctors;
+exports.doctorsModule = Doctor;

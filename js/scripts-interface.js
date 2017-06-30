@@ -5,7 +5,7 @@ var display = function(array) {
   $("#output").empty();
   for(var i = 0; i <= 20; i++){
     $('#output').append("<li>" +
-      "<h3>" + array[i].name + "</h3>" +
+      "<h3>" + array[i].firstName + " " + array[i].middleName + " " + array[i].lastName + ", " + array[i].title + "</h3>" +
       "<h5>" + array[i].practice + "</h5>" +
       "<img src=" + array[i].image + ">" +
       "<p> Address: " + array[i].address + "</p>" +

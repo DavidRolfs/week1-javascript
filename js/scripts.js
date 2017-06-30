@@ -1,16 +1,28 @@
 Doctors = function(){
+  nameArray = [];
+  practicesArray = [];
+  websiteArray = [];
+  phoneArray = [];
+  addressArray = [];
 };
 
 Doctors.prototype.getDoctors = function(medicalIssue, apiKey, display) {
-  var array = []
   $.get('https://api.betterdoctor.com/2016-03-01/doctors?query=' +  medicalIssue + '&location=45.5231%2C-122.6765%2C%205&user_location=45.5231%2C-122.6765&skip=0&limit=20&user_key=' + apiKey)
    .then(function(result) {
-     var doctorProfile = result.data
-     doctorProfile.forEach(function(element){
-       array.push(element.profile.first_name)
+     var doc = result.data;
+     doc.forEach(function(element){
+
+        nameArray.push(element.profile.first_name + " " + element.profile.middle_name + " " + element.profile.last_name);
+
+        practicesArray.push(element.practices[0].name)
+
+        phoneArray.push(element.practices[0].phones[0].number)
+
+        websiteArray.push(element.practices[0].website);
+
+        addressArray.push(element.practices[0].visit_address.street + " " + element.practices[0].visit_address.city + " " + element.practices[0].visit_address.state + " " + element.practices[0].visit_address.zip)
      });
-     display(array)
-     console.log(array)
+     display(nameArray, phoneArray, websiteArray, practicesArray, addressArray);
     })
    .fail(function(error){
       console.log("fail");

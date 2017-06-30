@@ -1,10 +1,16 @@
 var Doctors = require('./../js/scripts.js').doctorsModule;
 var apiKey = require('./../.env').apiKey;
 
-var display = function(profile) {
-  profile.forEach(function(firstName){
-    $('#output').append("<li>" + firstName + "</li>");
-  });
+var display = function(name, contact, website, practice, address) {
+  for(var i = 0; i <= 20; i++){
+    $('#output').append("<li>" +
+      "<h3>" + name[i] + "</h3>" +
+      "<h5>" + practice[i] + "</h5>" +
+      "<p> address: " + address[i] + "</p>" +
+      "<p> Phone number: " + contact[i] + "</p>" +
+      "<p> Webiste " + website[i] + "</p>" +
+      "</li>");
+  }
 };
 
 $(document).ready(function(){

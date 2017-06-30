@@ -17,7 +17,7 @@ Doctor.prototype.getDoctors = function(medicalIssue, apiKey, display) {
     .then(function(result) {
       var doc = result.data;
       doc.forEach(function(element){
-        var newDoctor = new Doctor(element.profile.first_name, element.profile.middle_name, element.profile.last_name, element.profile.title, element.practices[0].name, element.practices[0].website, element.practices[0].phones[0].number, (element.practices[0].visit_address.street + " " + element.practices[0].visit_address.city + " " + element.practices[0].visit_address.state + " " + element.practices[0].visit_address.zip), element.profile.image_url);
+        var newDoctor = new Doctor(element.profile.first_name, element.profile.middle_name, element.profile.last_name, element.profile.title, element.practices[0].name, element.practices[0].website, element.practices[0].phones[0].number, (element.practices[0].visit_address.street + " " + element.practices[0].visit_address.city + ", " + element.practices[0].visit_address.state + " " + element.practices[0].visit_address.zip), element.profile.image_url);
 
       allDoctorsArray.push(newDoctor);
      });

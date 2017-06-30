@@ -9,10 +9,9 @@ Webpage uses the BetterDoctor api. The user can search by symptom and return a l
 ## Repository
 https://github.com/DavidRolfs/week1-javascript
 ## Specs
-user inputs a symptom
-input: "back pain"
-output: "Amanda Nicole Graff-Baker, MD
-Legacy Salmon Crk Pain Mgmt Ctr"
+| Description | input | output |
+| ------------- |:-------------:| -----:|
+|user enters a symptom into form | "back pain" | "Amanda Nicole Graff-Baker, MD Legacy Salmon Crk Pain Mgmt Ctr" |
 
 
 ## Setup/Installation Requirements

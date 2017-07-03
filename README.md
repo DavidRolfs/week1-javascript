@@ -16,7 +16,7 @@ https://github.com/DavidRolfs/week1-javascript
 
 ## Setup/Installation Requirements
 * copy clone/download like from github repository
-* enter "get clone" and repository link in to terminal and hit enter
+* enter "git clone" and repository link in to terminal and hit enter
 * enter cloned repository inside of terminal
 * type "npm install" and hit enter
 * type "bower install" and hit enter
